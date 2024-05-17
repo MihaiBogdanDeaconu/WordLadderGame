@@ -71,8 +71,11 @@ map<T, T> Graph<T>::BFS(T startingNode)
     queue<T> myQ;
     for(auto pair: adjList)
     {
-        visited.insert(make_pair(pair.first, false));
-        dads.insert(make_pair(pair.first, ""));
+        if(pair.first.length() == startingNode.length())
+        {
+            visited.insert(make_pair(pair.first, false));
+            dads.insert(make_pair(pair.first, ""));
+        }
     }
     
     myQ.push(startingNode);
@@ -110,6 +113,7 @@ void Graph<T>::displayPath(T start, T end)
     {
         cout << elem << ' ';
     }
+    cout << endl;
 }
 
 template class Graph<string>;
