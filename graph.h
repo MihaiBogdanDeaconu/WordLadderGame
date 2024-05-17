@@ -4,13 +4,15 @@
 #include <iostream>
 using namespace std;
 
-template <typename t>
+template <typename T>
 class Graph
 {
 private:
-    multimap<t, t> adjList;
+    multimap<T, T> adjList;
 
 public:
     void generateAdjList();
     void printAdjList() const;
+    map<T, T> BFS(T startNode);
+    void displayPath(T start, T end);
 };

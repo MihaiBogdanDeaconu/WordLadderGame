@@ -3,6 +3,7 @@
 #include <fstream> 
 #include <vector>
 #include <map>
+#include <queue>
 
 using namespace std;
 //a
@@ -60,6 +61,55 @@ void Graph<T>::printAdjList() const
         cout << pair.second;
     }
     cout << endl;
+}
+
+template<typename T>
+map<T, T> Graph<T>::BFS(T startingNode)
+{
+    map<T, bool> visited;
+    map<T, T> dads;
+    queue<T> myQ;
+    for(auto pair: adjList)
+    {
+        visited.insert(make_pair(pair.first, false));
+        dads.insert(make_pair(pair.first, ""));
+    }
+    
+    myQ.push(startingNode);
+    visited[startingNode] = true;
+
+    while(!myQ.empty())
+    {
+        auto range = adjList.equal_range(myQ.front());
+        for(auto it = range.first; it != range.second; ++it)
+        {
+            if(visited[it->second] == false)
+            {
+                dads[it->second] = myQ.front();
+                visited[it->second] = true;
+                myQ.push(it->second);
+            }
+        }
+        myQ.pop();
+    }
+    return dads;
+}
+
+template <typename T>
+void Graph<T>::displayPath(T start, T end)
+{
+    map<T, T> dads;
+    vector<T> solution;
+    dads = BFS(start);
+    while(end != "")
+    {
+       solution.insert(solution.begin(), end);
+       end = dads[end]; 
+    }
+    for(T elem: solution)
+    {
+        cout << elem << ' ';
+    }
 }
 
 template class Graph<string>;
