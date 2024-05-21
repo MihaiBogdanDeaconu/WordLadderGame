@@ -14,5 +14,5 @@ public:
     void generateAdjList();
     void printAdjList() const;
     map<T, T> BFS(T startNode);
-    void displayPath(T start, T end);
+    bool displayPath(T start, T end);
 };

@@ -99,21 +99,31 @@ map<T, T> Graph<T>::BFS(T startingNode)
 }
 
 template <typename T>
-void Graph<T>::displayPath(T start, T end)
+bool Graph<T>::displayPath(T start, T end)
 {
     map<T, T> dads;
     vector<T> solution;
     dads = BFS(start);
+    bool foundPath = true;
     while(end != "")
     {
        solution.insert(solution.begin(), end);
-       end = dads[end]; 
+       end = dads[end];
     }
-    for(T elem: solution)
+
+    if(solution.size() == 1)
+        foundPath = false;
+
+    if(foundPath)
     {
-        cout << elem << ' ';
+        for(T elem: solution)
+        {
+            cout << elem << ' ';
+        }
+        cout << endl;
     }
-    cout << endl;
+
+    return foundPath;
 }
 
 template class Graph<string>;

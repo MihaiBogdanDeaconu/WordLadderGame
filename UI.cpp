@@ -34,7 +34,9 @@ void UI<T>::automaticModeMenu()
                 {
                     toLowerWord(startWord);
                     toLowerWord(endWord);
-                    this->dictionary.displayPath(startWord, endWord);
+                    bool foundPath = this->dictionary.displayPath(startWord, endWord);
+                    if(!foundPath)
+                        cout << "There is no solution for the words you provided! Check the validity of your words!\n";
                     break;
                 }
                     
@@ -81,6 +83,14 @@ bool UI<T>::readOption(int &option)
     try
     {
         cin >> option;
+
+        if(cin.fail())
+        {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            throw invalid_argument("Invalid input! Please enter an integer.");
+        }
+
         if(option > 2 || option < 0)
             throw invalid_argument("Invalid Option! Try Again!");
         return true;
