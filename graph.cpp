@@ -4,9 +4,16 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <random>
 
 using namespace std;
-//a
+
+template <typename T>
+Graph<T>::Graph()
+{
+    generateAdjList();
+}
+
 template<typename T>
 void Graph<T>::generateAdjList()
 {
@@ -16,6 +23,7 @@ void Graph<T>::generateAdjList()
     string word;
     while(in >> word)
     {
+        this->words.push_back(word);
         for(int i = 0 ; i < word.size(); ++i)
         {
             string auxStr = word;
@@ -125,5 +133,50 @@ bool Graph<T>::displayPath(T start, T end)
 
     return foundPath;
 }
+
+template <typename T>
+T Graph<T>::getRandomWord(int nrLetters)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dis(0, this->words.size() - 1);
+    while(true)
+    {
+        int randomIndex = dis(gen);
+        if(this->words.at(randomIndex).size() == nrLetters)
+        {
+            return this->words.at(randomIndex);
+            break;
+        }
+            
+    }
+}
+
+template <typename T>
+bool Graph<T>::existsWord(T word) const
+{
+    auto it = this->adjList.find(word);
+    return it != this->adjList.end();
+}
+
+template <typename T>
+bool Graph<T>::validTransformation(T originalWord, T transformedWord) const
+{
+    int difs = 0;
+
+    if(originalWord.size() != transformedWord.size())
+        return false;
+
+    for(int i = 0; i < originalWord.size(); ++i)
+    {
+        if(originalWord[i] != transformedWord[i])
+            ++difs;
+        if(difs > 1)
+            return false;
+    }
+
+    return true;
+}
+
 
 template class Graph<string>;

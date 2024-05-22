@@ -9,6 +9,5 @@ int main()
 {
     UI<string> ui;
     ui.run();
-
     return 0;
 }
