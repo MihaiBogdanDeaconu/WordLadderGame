@@ -20,4 +20,5 @@ public:
     T getRandomWord(int nrLetters);
     bool existsWord(T word) const;
     bool validTransformation(T originalWord, T transformedWord) const;
+    vector<T> getPath(T start, T end);
 };

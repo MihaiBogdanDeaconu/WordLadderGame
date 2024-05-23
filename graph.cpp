@@ -135,6 +135,22 @@ bool Graph<T>::displayPath(T start, T end)
 }
 
 template <typename T>
+vector<T> Graph<T>::getPath(T start, T end)
+{
+    map<T, T> dads;
+    vector<T> solution;
+    dads = BFS(start);
+    bool foundPath = true;
+    while(end != "")
+    {
+       solution.insert(solution.begin(), end);
+       end = dads[end];
+    }
+
+    return solution;
+}
+
+template <typename T>
 T Graph<T>::getRandomWord(int nrLetters)
 {
     random_device rd;

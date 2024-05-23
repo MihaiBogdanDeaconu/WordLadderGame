@@ -71,24 +71,33 @@ void UI<T>::playingModeMenu()
     
     string startWord = this->dictionary.getRandomWord(nrLetters);
     string endWord;
+    vector <string> path;
     while(true)
     {
         endWord = this->dictionary.getRandomWord(nrLetters);
         if(endWord != startWord)
-            break;
+        {
+            path = this->dictionary.getPath(startWord, endWord);
+            if(path.size() != 1)
+                break;
+        }
     }
-    this->dictionary.displayPath(startWord, endWord);
 
-    cout << "Randomly generated, the starting word and the ending words with" <<  nrLetters<< " letters is " << GREEN_TEXT_COLOR << startWord << RESET_TEXT_COLOR << " and " << BLUE_TEXT_COLOR << endWord << RESET_TEXT_COLOR << '.' << endl;
+    cout << "Randomly generated, the starting word and the ending words with " <<  nrLetters<< " letters is " << GREEN_TEXT_COLOR << startWord << RESET_TEXT_COLOR << " and " << BLUE_TEXT_COLOR << endWord << RESET_TEXT_COLOR << '.' << endl;
     cout << GREEN_TEXT_COLOR << startWord << RESET_TEXT_COLOR << endl;
-    cout << "Now you can start changing this word: \n";
+    cout << "IF YOU NEED ANY HINT, TYPE \"h\" in the console. Now you can start changing this word: \n";
     
     string prevWord = startWord;
     while(true)
     {
         string curWord;
         cin >> curWord;
-        if(!this->dictionary.validTransformation(prevWord, curWord))
+        if(curWord == 'h')
+        {
+            pm.incNrHints();
+            
+        }
+        else if(!this->dictionary.validTransformation(prevWord, curWord))
             cout << "This is not a valid transformation! Try again!\n";
         else if(!this->dictionary.existsWord(curWord))
             cout << "This word doesn't exist! Try again!\n";
