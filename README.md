@@ -33,7 +33,7 @@ To install and run the Word Ladder game, follow these steps:
 
 1. **Clone the repository**:
     ```sh
-    git clone https://github.com/yourusername/word-ladder-game.git
+    git clone https://github.com/MihaiBogdanDeaconu/WordLadderGame
     cd word-ladder-game
     ```
 
