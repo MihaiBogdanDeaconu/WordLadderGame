@@ -1,0 +1,7 @@
+PlayerName,StartWord,EndWord,NumberOfHints,NumberOptimalMoves,NumberOfMovesUsed,WordsUsed
+Mihai,cod,jap,1,3,5,cad;cap;cad;cap;jap
+Mihai,morta,aorta,0,1,1,aorta
+Gigel,bead,euge,3,6,6,lead;lend;lund;lune;luge;euge
+Mihai,sir,cop,1,3,3,sip;sop;cop
+Mihai,it,gh,1,3,3,at;ah;gh
+Mihai,molva,means,2,15,15,malva;salva;salve;solve;soave;slave;glave;grave;grade;grado;grano;grant;geant;meant;means
