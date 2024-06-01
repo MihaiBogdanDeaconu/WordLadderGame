@@ -4,10 +4,24 @@
 #include <sstream>
 #include <vector>
 
+
+/**
+ * @brief Checks if a file is empty
+ * 
+ */
 bool isFileEmpty(std::ifstream& file) {
     return file.peek() == std::ifstream::traits_type::eof();
 }
 
+
+/**
+ * @brief Load game data into a CSV file
+ * 
+ * @param pm The player mode object containing game data
+ * @param startWord The starting word of the game
+ * @param endWord The target word of the game
+ * @param optimalMovesNr The optimal number of moves to reach the target word
+ */
 void Analytics::loadData(PlayerMode const &pm, string startWord, string endWord, int optimalMovesNr) const
 {
     std::ifstream infile("username.csv");
@@ -44,6 +58,13 @@ void Analytics::loadData(PlayerMode const &pm, string startWord, string endWord,
     file.close();
 }
 
+
+/**
+ * @brief Parse a line from a CSV file
+ * 
+ * @param line The line to parse
+ * @return std::vector<std::string> The parsed fields
+ */
 std::vector<std::string> parseCSVLine(const std::string& line) {
     std::vector<std::string> result;
     std::stringstream sstream(line);
@@ -64,6 +85,12 @@ std::vector<std::string> parseCSVLine(const std::string& line) {
 }
 
 
+/**
+ * @brief Get game data for a specific player
+ * 
+ * @param playerName The name of the player
+ * @return bool True if data is found, False otherwise
+ */
 bool Analytics::getData(string playerName)
 {
     std::ifstream file("username.csv");

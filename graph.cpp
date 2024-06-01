@@ -8,12 +8,22 @@
 
 using namespace std;
 
+
+/**
+* @brief Construct a new Graph object
+* 
+*/
 template <typename T>
 Graph<T>::Graph()
 {
     generateAdjList();
 }
 
+
+/**
+* @brief Generates the adjacency list for the graph based on the dictionary of words
+* 
+*/
 template<typename T>
 void Graph<T>::generateAdjList()
 {
@@ -47,6 +57,11 @@ void Graph<T>::generateAdjList()
     }
 }
 
+
+/**
+* @brief Prints the adjacency list of the graph
+* 
+*/
 template<typename T>
 void Graph<T>::printAdjList() const
 {
@@ -71,6 +86,13 @@ void Graph<T>::printAdjList() const
     cout << endl;
 }
 
+
+/**
+* @brief Performs Breadth-First Search (BFS) on the graph starting from the given node
+* 
+* @param startingNode The starting node for BFS
+* @return map<T, T> A map containing the parent nodes of each node visited during BFS
+*/
 template<typename T>
 map<T, T> Graph<T>::BFS(T startingNode)
 {
@@ -106,6 +128,15 @@ map<T, T> Graph<T>::BFS(T startingNode)
     return dads;
 }
 
+
+/**
+* @brief Displays the shortest path from start to end node
+* 
+* @param start The starting node
+* @param end The ending node
+* @return true If a path is found
+* @return false If no path is found
+*/
 template <typename T>
 bool Graph<T>::displayPath(T start, T end)
 {
@@ -134,6 +165,14 @@ bool Graph<T>::displayPath(T start, T end)
     return foundPath;
 }
 
+
+/**
+* @brief Gets the shortest path from start to end node
+* 
+* @param start The starting node
+* @param end The ending node
+* @return vector<T> The shortest path from start to end node
+*/
 template <typename T>
 vector<T> Graph<T>::getPath(T start, T end)
 {
@@ -150,6 +189,13 @@ vector<T> Graph<T>::getPath(T start, T end)
     return solution;
 }
 
+
+/**
+* @brief Gets a random word from the dictionary with the specified number of letters
+* 
+* @param nrLetters The number of letters in the word
+* @return T A random word from the dictionary
+*/
 template <typename T>
 T Graph<T>::getRandomWord(int nrLetters)
 {
@@ -159,15 +205,22 @@ T Graph<T>::getRandomWord(int nrLetters)
     while(true)
     {
         int randomIndex = dis(gen);
-        if(this->words.at(randomIndex).size() == nrLetters)
+        if(this->words.at(randomIndex).size() == nrLetters && this->adjList.count(this->words.at(randomIndex)) > 0)
         {
             return this->words.at(randomIndex);
             break;
         }
-            
     }
 }
 
+
+/**
+* @brief Checks if a word exists in the dictionary
+* 
+* @param word The word to check
+* @return true If the word exists in the dictionary
+* @return false If the word does not exist in the dictionary
+*/
 template <typename T>
 bool Graph<T>::existsWord(T word) const
 {
@@ -175,6 +228,15 @@ bool Graph<T>::existsWord(T word) const
     return it != this->adjList.end();
 }
 
+
+/**
+* @brief Checks if a transformation from originalWord to transformedWord is valid
+* 
+* @param originalWord The original word
+* @param transformedWord The transformed word
+* @return true If the transformation is valid
+* @return false If the transformation is not valid
+*/
 template <typename T>
 bool Graph<T>::validTransformation(T originalWord, T transformedWord) const
 {

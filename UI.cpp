@@ -14,12 +14,11 @@
 
 using namespace std;
 
-// template <typename T>
-// UI<T>::UI()
-// {
-//     this->dictionary.generateAdjList();
-// }
 
+/**
+* @brief Display the main menu options
+* 
+*/
 template <typename T>
 void UI<T>::displayMainMenu() const
 {
@@ -29,6 +28,11 @@ void UI<T>::displayMainMenu() const
     cout << "0. Exit\n";
 }
 
+
+/**
+* @brief Handle automatic mode menu
+* 
+*/
 template <typename T>
 void UI<T>::automaticModeMenu()
 {
@@ -59,6 +63,12 @@ void UI<T>::automaticModeMenu()
     }
 }
 
+
+/**
+* @brief Handle playing mode menu
+* 
+*/
+
 template <typename T>
 void UI<T>::playingModeMenu()
 {
@@ -80,7 +90,6 @@ void UI<T>::playingModeMenu()
     while(true)
     {
         endWord = this->dictionary.getRandomWord(nrLetters);
-        cout << endWord << endl;
         if(endWord != startWord)
         {
             path = this->dictionary.getPath(startWord, endWord);
@@ -158,6 +167,11 @@ void UI<T>::playingModeMenu()
     }
 }
 
+
+/**
+* @brief Handle player analytics menu
+* 
+*/
 template <typename T>
 void UI<T>::analyticsMenu()
 {
@@ -197,6 +211,10 @@ void UI<T>::analyticsMenu()
 }
 
 
+/**
+* @brief Run the user interface
+* 
+*/
 template <typename T>
 void UI<T>::run() 
 {
@@ -232,6 +250,14 @@ void UI<T>::run()
     }
 }
 
+
+/**
+* @brief Read an integer option from input
+* 
+* @param option The option selected by the user
+* @return true If the option is read successfully
+* @return false If an error occurs while reading the option
+*/
 template <typename T>
 bool UI<T>::readOption(int &option)
 {
@@ -258,6 +284,14 @@ bool UI<T>::readOption(int &option)
         
 }
 
+
+/**
+* @brief Read a word from input
+* 
+* @param word The word entered by the user
+* @return true If the word is read successfully
+* @return false If an error occurs while reading the word
+*/
 template <typename T>
 bool UI<T>::readWord(string &word)
 {
@@ -274,6 +308,12 @@ bool UI<T>::readWord(string &word)
         
 }
 
+
+/**
+* @brief Convert a word to lowercase
+* 
+* @param word The word to convert to lowercase
+*/
 template <typename T>
 void UI<T>::toLowerWord(string &word)
 {
@@ -281,4 +321,9 @@ void UI<T>::toLowerWord(string &word)
         *it = tolower(*it);
 }
 
+
+/**
+ * @brief Explicit instantiation of UI class template for string type
+ * 
+ */
 template class UI<string>;
