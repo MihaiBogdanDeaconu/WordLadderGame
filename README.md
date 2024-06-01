@@ -149,7 +149,7 @@ ah aorta at boil bola boll cad cafe caff cap care caro cop faces feces foil foul
 The core of the Word Ladder game is the graph data structure, which represents words as nodes and edges between words that differ by one letter. This is implemented using adjacency lists, with the Graph class being templated to allow any data type in the nodes.
 
 ### Building the Graph
-To build the graph efficiently, we use the concept of wildcards and a map (similar to a dictionary in Python). Each word pattern (e.g., *AME, S*ME) maps to a list of words matching that pattern. This allows us to quickly find and add edges between words that differ by one letter.
+To build the graph efficiently, we use the concept of wildcards and a map (similar to a dictionary in Python). Each word pattern (e.g., \*AME, S\*ME) maps to a list of words matching that pattern. This allows us to quickly find and add edges between words that differ by one letter.
 
 ### Finding the Shortest Path
 We use the Breadth-First Search (BFS) algorithm to find the shortest path from the starting word to the target word. BFS is ideal for this problem because it explores all nodes at the present depth level before moving on to nodes at the next depth level, ensuring the shortest path is found.
